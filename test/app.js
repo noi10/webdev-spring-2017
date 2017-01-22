@@ -13,7 +13,7 @@ module.exports = function(app)
         connectionString = 'mongodb://'+
             username + ':' +
             password +
-            '@ds157268.mlab.com:57268/heroku_nh37fqq4';
+            '@ds147167.mlab.com:47167/heroku_kgz7xmd8';
     }
     //if(process.env.MONGODB_URI){
     //connectionString = process.env.MONGODB_URI

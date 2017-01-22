@@ -6,9 +6,9 @@ module.exports = function(app)
 
     var connectionString = 'mongodb://127.0.0.1:27017/test';
 
-    if(process.env.MLAB_USERNAME_WEBDEV) {
-        var username = process.env.MLAB_USERNAME_WEBDEV;
-        var password = process.env.MLAB_PASSWORD_WEBDEV;
+    if(process.env.MLAB_USERNAME) {
+        var username = process.env.MLAB_USERNAME;
+        var password = process.env.MLAB_PASSWORD;
 
         connectionString = 'mongodb://'+
             username + ':' +

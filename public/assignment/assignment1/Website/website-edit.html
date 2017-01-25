@@ -9,29 +9,50 @@
 
 
 <nav class="navbar navbar-fixed-top bg-primary">
-    <div class="container-fluid">
-        <p class="navbar-text pull-left">
+    <div class="container-fluid visible-xs">
+        <div class="navbar-text pull-left">
             <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
-
-        </p>
-        <span class="navbar-brand hidden-xs col-xs-6">Websites</span>
-        <div class="hidden-xs">
-            <p class="navbar-text">
-                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
-
-            </p>
         </div>
-        <span class="navbar-brand">Edit Website</span>
-        <p class="navbar-text pull-right">
-            <a href="website-list.html">
-                <span class="glyphicon glyphicon-ok"></span>
+        <div class="navbar-text pull-right">
+            <a href="website-list.html" class="navbar-link">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
             </a>
-        </p>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">
+                Edit Website
+            </a>
+        </div>
+    </div>
+    <div class="row container-fluid hidden-xs">
+        <div class="col-xs-6">
+            <div class="navbar-text pull-left">
+                <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
+            </div>
+            <div class="navbar-header"><a class="navbar-brand" href="#">Websites</a></div>
+            <div class="navbar-text pull-right">
+                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="navbar-text pull-right">
+                <a href="website-list.html" class="navbar-link">
+                  <span class="glyphicon glyphicon-ok">
+                  </span>
+                </a>
+            </div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    Edit Website
+                </a>
+            </div>
+        </div>
     </div>
 </nav>
 
-<div class="container">
-    <div class="col-xs-6 hidden-xs">
+<div class="container-fluid hidden-xs">
+    <div class="col-xs-6 ">
         <p id="p01">
             <a href="../Page/page-list.html">Address Book App</a>
             <a class="pull-right"href="website-edit.html">
@@ -59,8 +80,7 @@
         </p>
 
     </div>
-    <div class="col-xs-6 hidden-xs">
-
+    <div class="col-xs-6">
         <form>
             <div class="form-group">
                 <label for="name">Website Name</label>
@@ -70,13 +90,12 @@
                 <label for="description">Website Description</label>
                 <textarea class="form-control" rows="5" id="description">Blogger Description</textarea>
             </div>
-
         </form>
         <a class="btn btn-space btn-danger btn-block"
            href="website-list.html">Delete</a>
     </div>
 </div>
-<div class="visible-xs-block">
+<div class="container-fluid visible-xs-block">
     <form>
         <div class="form-group">
             <label for="name">Website Name</label>
@@ -93,7 +112,7 @@
 </div>
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
-    <div class="container">
+    <div class="container-fluid">
         <div class="navbar-text pull-right">
             <a href="../User/profile.html">
                 <span class="glyphicon glyphicon-user"></span>

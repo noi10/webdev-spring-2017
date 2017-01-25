@@ -6,56 +6,89 @@
     <link href="/bootstrap/css/bootstrap.css", rel="stylesheet">
 </head>
 <body>
+
+
 <nav class="navbar navbar-fixed-top bg-primary">
     <div class="container-fluid">
         <p class="navbar-text pull-left">
-            <a href="../User/profile.html">
-                <span class="glyphicon glyphicon-chevron-left glyphicon-margin-left"></span>
-            </a>
+            <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
+
         </p>
+        <span class="navbar-brand hidden-xs col-xs-5">Websites</span>
         <div class="hidden-xs">
-            <span class="navbar-brand">Websites</span>
-            <a class="navbar-text" href="../User/profile.html">
-                <span class="glyphicon glyphicon-plus"></span>
-            </a>
+            <p class="navbar-text">
+                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+
+            </p>
         </div>
         <span class="navbar-brand">New Website</span>
-
-        <div class="navbar-text pull-right">
-            <a href="website-new.html">
+        <p class="navbar-text pull-right">
+            <a href="website-list.html">
                 <span class="glyphicon glyphicon-ok"></span>
             </a>
-        </div>
-
+        </p>
     </div>
 </nav>
-<div id="p01">
-    <p>
-        <a href="../Page/page-list.html">Address Book App</a>
-        <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog" style="color:blue"></span>
-        </a>
-    </p>
 
-    <p>
-        <a href="../Page/page-list.html">Blogger</a>
-        <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog" style="color:blue"></span>
-        </a>
-    </p>
-    <p>
-        <a href="../Page/page-list.html">Blogging App</a>
-        <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog" style="color:blue"></span>
-        </a>
-    </p>
-    <p>
-        <a href="../Page/page-list.html">Script Testing App</a>
-        <a href="website-edit.html" class="pull-right">
-            <span class="glyphicon glyphicon-cog" style="color:blue"></span>
-        </a>
-    </p>
+<div class="container">
+    <div class="col-xs-6 hidden-xs">
+        <p id="p01">
+            <a href="../Page/page-list.html">Address Book App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Blogger</a>
+
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Blogging App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Script Testing App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+
+    </div>
+    <div class="col-xs-6 hidden-xs">
+
+            <form>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea class="form-control" rows="5" id="description" placeholder="Description"></textarea>
+                </div>
+
+            </form>
+
+    </div>
 </div>
+<div class="visible-xs-block">
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" rows="5" id="description" placeholder="Description"></textarea>
+        </div>
+
+    </form>
+</div>
+
 <nav class="navbar navbar-fixed-bottom bg-primary">
     <div class="container">
         <div class="navbar-text pull-right">
@@ -65,5 +98,7 @@
         </div>
     </div>
 </nav>
+
+
 </body>
 </html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/bootstrap/css/bootstrap.css", rel="stylesheet">
+</head>
+<body>
+
+
+<nav class="navbar navbar-fixed-top bg-primary">
+    <div class="container-fluid">
+        <p class="navbar-text pull-left">
+            <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left"></span></a>
+
+        </p>
+        <span class="navbar-brand hidden-xs col-xs-6">Websites</span>
+        <div class="hidden-xs">
+            <p class="navbar-text">
+                <a href="#"><span class="glyphicon glyphicon-plus"></span></a>
+
+            </p>
+        </div>
+        <span class="navbar-brand">Edit Website</span>
+        <p class="navbar-text pull-right">
+            <a href="website-list.html">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </p>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="col-xs-6 hidden-xs">
+        <p id="p01">
+            <a href="../Page/page-list.html">Address Book App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Blogger</a>
+
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Blogging App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+        <p id="p01">
+            <a href="../Page/page-list.html">Script Testing App</a>
+            <a class="pull-right"href="website-edit.html">
+                <span class="glyphicon glyphicon-cog" style="color:lightskyblue"></span>
+            </a>
+        </p>
+
+    </div>
+    <div class="col-xs-6 hidden-xs">
+
+        <form>
+            <div class="form-group">
+                <label for="name">Website Name</label>
+                <input type="text" class="form-control" id="name" value="Blogger">
+            </div>
+            <div class="form-group">
+                <label for="description">Website Description</label>
+                <textarea class="form-control" rows="5" id="description">Blogger Description</textarea>
+            </div>
+
+        </form>
+        <a class="btn btn-space btn-danger btn-block"
+           href="website-list.html">Delete</a>
+    </div>
+</div>
+<div class="visible-xs-block">
+    <form>
+        <div class="form-group">
+            <label for="name">Website Name</label>
+            <input type="text" class="form-control" id="name" value="Blogger">
+        </div>
+        <div class="form-group">
+            <label for="description">Website Description</label>
+            <textarea class="form-control" rows="5" id="description">Blogger Description</textarea>
+        </div>
+
+    </form>
+    <a class="btn btn-space btn-danger btn-block"
+       href="website-list.html">Delete</a>
+</div>
+
+<nav class="navbar navbar-fixed-bottom bg-primary">
+    <div class="container">
+        <div class="navbar-text pull-right">
+            <a href="../User/profile.html">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+
+</body>
+</html>

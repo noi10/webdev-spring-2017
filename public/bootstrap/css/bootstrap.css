@@ -4,6 +4,11 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+#p01 {
+  color: blue;
+  margin-left: 30px;
+  font-weight: bold;
+}
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -18,16 +23,7 @@ body {
 .text-space {
     margin-top: 10px;
 }
-.navbar-custom {
-  color: #FFFFFF;
-  background-color: #449fcc;
-}
 
-.icon-arrow-right {
-  float: right;
-  margin-top: 0px;
-  margin-right: 30px;
-}
 article,
 aside,
 details,

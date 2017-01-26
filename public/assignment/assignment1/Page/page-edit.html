@@ -3,30 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/bootstrap/css/bootstrap.css", rel="stylesheet">
+    <link href="../../../bootstrap/css/bootstrap.css", rel="stylesheet">
 </head>
 <body>
 
 
 <nav class="navbar navbar-fixed-top bg-primary">
-    <div class="container-fluid visible-xs">
-        <div class="navbar-text pull-left">
-            <a href="Page-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="Page-list.html" class="navbar-link">
-                  <span class="glyphicon glyphicon-ok white-icon">
-                  </span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Edit Page
-            </a>
-        </div>
-    </div>
-    <div class="row container-fluid hidden-xs">
-        <div class="col-xs-4">
+    <div class="row container-fluid ">
+        <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
                 <a href="Page-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
             </div>
@@ -35,7 +19,10 @@
                 <a href="page-new.html"><span class="glyphicon glyphicon-plus white-icon"></span></a>
             </div>
         </div>
-        <div class="col-xs-8">
+        <div class="col-sm-8">
+            <div class="navbar-text pull-left visible-xs">
+                <a href="Page-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
+            </div>
             <div class="navbar-text pull-right">
                 <a href="Page-list.html" class="navbar-link">
                   <span class="glyphicon glyphicon-ok white-icon">
@@ -51,8 +38,8 @@
     </div>
 </nav>
 
-<div class="container-fluid hidden-xs">
-    <div class="col-xs-4">
+<div class="container-fluid ">
+    <div class="col-sm-4 hidden-xs">
             <p>
                 <a href="../Widget/widget-list.html">Blog Post</a>
                 <a class="pull-right"href="page-edit.html">
@@ -84,7 +71,7 @@
                 </a>
             </p>
     </div>
-    <div class="col-xs-8">
+    <div class="col-sm-8">
         <form>
             <div class="form-group">
                 <label for="name">Page Name</label>
@@ -98,21 +85,6 @@
         <a class="btn btn-space btn-danger btn-block"
            href="Page-list.html">Delete</a>
     </div>
-</div>
-<div class="container-fluid visible-xs-block">
-    <form>
-        <div class="form-group">
-            <label for="name-xs">Page Name</label>
-            <input type="text" class="form-control" id="name-xs" value="Blog Post">
-        </div>
-        <div class="form-group">
-            <label for="description-xs">Page Description</label>
-            <textarea class="form-control" rows="5" id="description-xs">Blog Post Description</textarea>
-        </div>
-
-    </form>
-    <a class="btn btn-space btn-danger btn-block"
-       href="Page-list.html">Delete</a>
 </div>
 
 <nav class="navbar navbar-fixed-bottom bg-primary">

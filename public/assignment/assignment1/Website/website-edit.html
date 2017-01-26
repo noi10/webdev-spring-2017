@@ -3,39 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link href="/bootstrap/css/bootstrap.css", rel="stylesheet">
+    <link href="../../../bootstrap/css/bootstrap.css", rel="stylesheet">
 </head>
 <body>
 
 
 <nav class="navbar navbar-fixed-top bg-primary">
-    <div class="container-fluid visible-xs">
-        <div class="navbar-text pull-left">
-            <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
-        </div>
-        <div class="navbar-text pull-right">
-            <a href="website-list.html" class="navbar-link">
-                  <span class="glyphicon glyphicon-ok white-icon">
-                  </span>
-            </a>
-        </div>
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">
-                Edit Website
-            </a>
-        </div>
-    </div>
-    <div class="row container-fluid hidden-xs">
-        <div class="col-sm-4">
+    <div class="row container-fluid">
+        <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
                 <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
             </div>
-            <div class="navbar-header"><a class="navbar-brand" href="#">Websites</a></div>
+            <div class="navbar-header "><a class="navbar-brand" href="#">Websites</a></div>
             <div class="navbar-text pull-right">
                 <a href="#"><span class="glyphicon glyphicon-plus white-icon"></span></a>
             </div>
         </div>
         <div class="col-sm-8">
+            <div class="navbar-text pull-left visible-xs">
+                <a href="website-list.html"><span class="glyphicon glyphicon-chevron-left white-icon"></span></a>
+            </div>
             <div class="navbar-text pull-right">
                 <a href="website-list.html" class="navbar-link">
                   <span class="glyphicon glyphicon-ok white-icon">
@@ -51,8 +38,8 @@
     </div>
 </nav>
 
-<div class="container-fluid hidden-xs">
-    <div class="col-sm-4 ">
+<div class="container-fluid ">
+    <div class="col-sm-4 hidden-xs">
         <p>
             <a href="../Page/page-list.html">Address Book App</a>
             <a class="pull-right" href="website-edit.html">
@@ -95,21 +82,7 @@
            href="website-list.html">Delete</a>
     </div>
 </div>
-<div class="container-fluid visible-xs">
-    <form>
-        <div class="form-group">
-            <label for="name-xs">Website Name</label>
-            <input type="text" class="form-control" id="name-xs" value="Blogger">
-        </div>
-        <div class="form-group">
-            <label for="description-xs">Website Description</label>
-            <textarea class="form-control" rows="5" id="description-xs">Blogger Description</textarea>
-        </div>
 
-    </form>
-    <a class="btn btn-space btn-danger btn-block"
-       href="website-list.html">Delete</a>
-</div>
 
 <nav class="navbar navbar-fixed-bottom bg-primary">
     <div class="container-fluid">

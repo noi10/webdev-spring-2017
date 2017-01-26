@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="../../../bootstrap/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../styles.css" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<nav class="navbar navbar-fixed-top bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="widget-list.html">
+                <span class="glyphicon glyphicon-chevron-left white-icon"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="widget-list.html">
+                <span class="glyphicon glyphicon-ok white-icon"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Widget Edit</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+
+    <form>
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Widget Name">
+        </div>
+
+        <div class="form-group">
+            <label for="Text">Text</label>
+            <input type="text" class="form-control" id="Text" placeholder="Paragraph for the haeding">
+        </div>
+        <div class="form-group">
+            <label for="url">URL</label>
+            <input type="text" class="form-control" id="url"
+                   value="https://lh6.googleusercontent.com/Qu1DGWeiQiyTtwVlP1QkqdTuvrdOfSkAibF39KAv-M0qy5eCNOQk9Z8_Dd3qH-obterB6-eovXRlWQMkWSBiB87SqGic-ISc2NsWB64M9O1sQ-GVDLzcs94Z56yO4P1-_g">
+        </div>
+        <div class="form-group">
+            <label for="width">Width</label>
+            <input type="text" class="form-control" id="width" placeholder="100%">
+        </div>
+    </form>
+    <label class="btn btn-file">
+        <input type="file" hidden>
+    </label>
+    <a class="btn btn-primary btn-block"
+       href="widget-list.html">Upload Image</a>
+    <a class="btn btn-danger btn-block"
+       href="widget-list.html">Delete</a>
+
+</div>
+
+<nav class="navbar navbar-fixed-bottom bg-primary">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="../User/profile.html">
+                <span class="glyphicon glyphicon-user white-icon"></span>
+            </a>
+        </div>
+    </div>
+</nav>
+
+</body>
+</html>

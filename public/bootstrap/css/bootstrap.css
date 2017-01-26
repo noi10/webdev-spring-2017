@@ -4,11 +4,7 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-#p01 {
-  color: blue;
-  margin-left: 30px;
-  font-weight: bold;
-}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -286,7 +282,7 @@ th {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-  color : white;
+  color : lightblue;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -6769,3 +6765,6 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
+.white-icon {
+  color: white;
+}

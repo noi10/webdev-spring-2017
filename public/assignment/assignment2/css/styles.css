@@ -36,26 +36,15 @@ body {
     padding-right: 15px;
     overflow-y: auto;
 }
-
-.navbar-default {
-    background-color: #555555;
-    border-color: #e7e7e7;
-}
-
-.navbar-default .navbar-brand {
-    color: white;
-}
-
 .navbar a {
     color: white;
 }
 
-
 .btn {
-    border-radius: 0px;
+    border-radius: 10px;
 }
 
-.jga-toolbar {
+.gu-toolbar {
     position: absolute;
     right: 15px;
     background-color: white;

@@ -2,7 +2,7 @@
     <div class="row container-fluid">
         <div class="col-sm-4 hidden-xs">
             <div class="navbar-text pull-left">
-                <a>
+                <a href = "#/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
@@ -12,19 +12,19 @@
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a>
+                <a href = "#/user/{{model.userId}}/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
         </div>
         <div class="col-sm-8">
             <div class="navbar-text pull-left">
-                <a>
+                <a href = "#/user/{{model.userId}}/website">
                     <span class="glyphicon glyphicon-chevron-left"></span>
                 </a>
             </div>
             <div class="navbar-text pull-right">
-                <a>
+                <a href = "#/user/{{model.userId}}/website/new">
                     <span class="glyphicon glyphicon-plus"></span>
                 </a>
             </div>
@@ -47,7 +47,7 @@
                         <span class="glyphicon glyphicon-triangle-top"></span>
                     </div>
                     <div class="col-xs-2">
-                        <a href="website-new.html" class="pull-right">
+                        <a href = "#/user/{{model.userId}}/website/new" class="pull-right">
                             <span class="glyphicon glyphicon-plus"></span>
                         </a>
                     </div>
@@ -59,7 +59,7 @@
                         {{website.name}}
                     </div>
                     <div class="col-xs-2">
-                        <a href="/user/{{model.userId}}/website/{{website._id}}">
+                        <a href="#/user/{{model.userId}}/website/{{website._id}}">
                             <span class="glyphicon glyphicon-cog pull-right"></span>
                         </a>
                     </div>

@@ -18,6 +18,6 @@
         var user = UserService.findUserById(userId);
         vm.user = user;
 
-        console.log(user);
+
     }
 })();

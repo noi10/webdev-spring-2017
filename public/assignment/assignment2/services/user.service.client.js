@@ -15,16 +15,32 @@
             "users": users,
             "updateUser": updateUser,
             "findUserByCredentials": findUserByCredentials,
-            "findUserById": findUserById
+            "findUserById": findUserById,
+            "registerUser": registerUser
         };
         return api;
 
+        function registerUser(newUser){
+            for (var u in users) {
+                var user = users[u];
+                if (user.username === newUser.username) {
+                    return null;
+                }
+            };
+            var User = {_id: new Date().getTime().toString (),
+                username: newUser.username, password: newUser.password,
+                firstName: "",  lastName: "" };
+            users.push(User);
+            //console.log(users);
+            return newUser;
+        }
         function updateUser(userId, newUser) {
             for(var u in users) {
                 var user = users[u];
                 if( user._id === userId ) {
                     users[u].firstName = newUser.firstName;
                     users[u].lastName = newUser.lastName;
+                    users[u].password = newUser.password;
                     return user;
                 }
             }

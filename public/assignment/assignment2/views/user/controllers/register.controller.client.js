@@ -11,7 +11,7 @@
 
         function register(newUser) {
             //console.log(newUser);
-            if ( ! newUser.password || ! newUser.username || ! newUser.rpassword){
+            if ( !newUser || ! newUser.password || ! newUser.username || ! newUser.rpassword){
                 vm.error = "Please fill in all the blanks";
             }
             else if (newUser.password != newUser.rpassword)  {

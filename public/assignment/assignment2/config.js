@@ -15,7 +15,7 @@
                 controller: 'registerController',
                 controllerAs: 'model'
             })
-            .when("/profile/:uid",{
+            .when("/user/:uid",{
                 templateUrl: 'views/user/templates/profile.view.client.html',
                 controller: 'profileController',
                 controllerAs: 'model'
@@ -33,6 +33,21 @@
             .when("/user/:uid/website/:wid",{
                 templateUrl: 'views/website/templates/website-edit.view.client.html',
                 controller: "WebsiteEditController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page", {
+                templateUrl: 'views/page/templates/page-list.view.client.html',
+                controller: "PageListController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/new", {
+                templateUrl: 'views/page/templates/page-new.view.client.html',
+                controller: "PageNewController",
+                controllerAs: "model"
+            })
+            .when("/user/:uid/website/:wid/page/:pid", {
+                templateUrl: 'views/page/templates/page-edit.view.client.html',
+                controller: "PageEditController",
                 controllerAs: "model"
             })
         // now do all the page routes using websites as an example

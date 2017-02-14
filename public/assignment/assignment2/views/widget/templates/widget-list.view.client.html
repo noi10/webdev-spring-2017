@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-text pull-left">
-            <a href="../user/profile.html">
+            <a href="#/user/{{model.userId}}">
                 <span class="glyphicon glyphicon-chevron-left"></span>
             </a>
         </div>
@@ -26,7 +26,7 @@
             <span class="glyphicon glyphicon-align-justify"></span>
         </div>
 
-        <!--<ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>-->
+        <ng-include src="model.getWidgetTemplateUrl(widget.widgetType)"></ng-include>
 
         <div ng-switch="widget.widgetType">
             <div ng-switch-when="HEADER">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    {{model.widgets}}
+    <!--{{model.widgets}}-->
 
 </div>
 

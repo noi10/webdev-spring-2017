@@ -16,8 +16,8 @@
     </div>
 </nav>
 
-<div class="container-fluid"
-     ng-include="model.getEditorTemplateUrl(model.widget.widgetType)">
+<div class="container-fluid">
+    <ng-include src="model.getEditorTemplateUrl(model.widget.widgetType)"></ng-include>
 </div>
 
 <nav class="navbar navbar-default navbar-fixed-bottom">

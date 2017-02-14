@@ -17,11 +17,24 @@
             { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
         ];
 
-        this.findAllWidgets = findAllWidgets;
+        this.findWidgetsByPageId = findWidgetsByPageId;
         this.findWidgetById = findWidgetById;
+        //this.createWidget = createWidget;
 
-        function findAllWidgets(pageId) {
-            return widgets;
+        //function createWidget(pageId, widget) {
+         //   widget.pageId = pageId;
+         //   widget._id =  new Date().getTime().toString ();
+         //   website.created = new Date();
+         //   websites.push(website);
+        //}
+        function findWidgetsByPageId(pageId) {
+            var wids = [];
+            for(var w in widgets) {
+                if(widgets[w].pageId === pageId) {
+                    wids.push(widgets[w]);
+                }
+            }
+            return wids;
         }
 
         function findWidgetById(widgetId) {

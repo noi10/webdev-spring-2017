@@ -22,7 +22,7 @@
         return api;
 
         function findWebsiteById(wid) {
-            console.log(websites)
+            //console.log(websites)
             for(var w in websites) {
                 if(websites[w]._id === wid) {
                     return angular.copy(websites[w]);

@@ -51,7 +51,7 @@
             //website.created = new Date();
 
             pages.push(page);
-            console.log(pages);
+            //console.log(pages);
         }
 
         function findPageByWebsiteId(websiteId) {

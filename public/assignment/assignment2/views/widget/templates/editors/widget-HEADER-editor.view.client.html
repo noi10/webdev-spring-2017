@@ -1,13 +1,12 @@
 <h1>HEADER Editor</h1>
 
-<label>Name</label>
-<input ng-model="model.widget.name" class="form-control"/>
+<!--{{model.widget.size}}-->
 
-<label>Text</label>
 <input ng-model="model.widget.text" class="form-control"/>
 
 <label>Size</label>
-<select class="form-control">
+<select class="form-control" data-ng-model="model.widget.size">
+
     <option>1</option>
     <option>2</option>
     <option>3</option>
@@ -15,3 +14,10 @@
     <option>5</option>
     <option>6</option>
 </select>
+
+<a ng-click = "model.updateWidget(model.widget)" class="btn btn-primary btn-block btn-space">
+    Update
+</a>
+<a ng-click="model.deleteWidget()" class="btn btn-danger btn-block btn-space">
+    Delete
+</a>

@@ -1,4 +1,10 @@
 <h1>HTML Editor</h1>
 
+<textarea ng-model="model.widget.text" class="form-control" rows = "10"></textarea>
 
-{{model.widget}}
+<a ng-click = "model.updateWidget(model.widget)" class="btn btn-primary btn-block btn-space">
+    Update
+</a>
+<a ng-click="model.deleteWidget()" class="btn btn-danger btn-block btn-space">
+    Delete
+</a>

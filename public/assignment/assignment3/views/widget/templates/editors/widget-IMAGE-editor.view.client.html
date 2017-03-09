@@ -1,19 +1,30 @@
 <h1>IMAGE Editor</h1>
 
 <!--{{model.widget}}-->
-<label>url</label>
-<input ng-model="model.widget.url" class="form-control"/>
 
-<label>width</label>
-<select class="form-control" data-ng-model="model.widget.width">
 
-    <option>50%</option>
-    <option>60%</option>
-    <option>70%</option>
-    <option>80%</option>
-    <option>90%</option>
-    <option>100%</option>
-</select>
+
+
+<form action="/api/upload"   method="post" enctype="multipart/form-data">
+    <input  type="file" name="myFile"     class="form-control"/>
+
+    <label>width</label>
+    <select class="form-control" data-ng-model="model.widget.width">
+
+        <option>50%</option>
+        <option>60%</option>
+        <option>70%</option>
+        <option>80%</option>
+        <option>90%</option>
+        <option>100%</option>
+    </select>
+    <input  type="text" name="userId"    value="{{model.userId}}"   style = "display: none"/>
+    <input  type="text" name="websiteId" value="{{model.websiteId}}"   style = "display: none"/>
+    <input  type="text" name="pageId"    value="{{model.pageId}}"   style = "display: none"/>
+    <input  type="text" name="widgetId"  value="{{model.widget._id}}"   style = "display: none"/>
+    <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+</form>
+
 
 <a ng-click = "model.updateWidget(model.widget)" class="btn btn-primary btn-block btn-space">
     Update

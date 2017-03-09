@@ -1,0 +1,41 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-text pull-left">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget/new">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+            </a>
+        </div>
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{model.pageId}}/widget">
+                <span class="glyphicon glyphicon-ok"></span>
+            </a>
+        </div>
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">Widget Editor</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container-fluid">
+    <ng-include src="model.getEditorTemplateUrl(model.widget.widgetType)"></ng-include>
+</div>
+
+<form action="/api/upload"   method="post" enctype="multipart/form-data">
+    <input  type="file" name="myFile"     class="form-control"/>
+    <input  type="text" name="width"     value="{{model.widget.width}}" style = "display: none"/>
+    <input  type="text" name="userId"    value="{{model.userId}}"   style = "display: none"/>
+    <input  type="text" name="websiteId" value="{{model.websiteId}}"   style = "display: none"/>
+    <input  type="text" name="pageId"    value="{{model.pageId}}"   style = "display: none"/>
+    <input  type="text" name="widgetId"  value="{{model.widget._id}}"   style = "display: none"/>
+    <button type="submit"    class="btn btn-block btn-primary">Upload Image</button>
+</form>
+
+<nav class="navbar navbar-fixed-bottom navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-text pull-right">
+            <a href="#/user/{{model.userId}}">
+                <span class="glyphicon glyphicon-user"></span>
+            </a>
+        </div>
+    </div>
+</nav>

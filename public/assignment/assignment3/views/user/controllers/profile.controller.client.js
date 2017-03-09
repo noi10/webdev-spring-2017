@@ -32,7 +32,6 @@
 
         function renderUser(user) {
             vm.user = user;
-            console.log(user);
         }
 
         vm.update = function (newUser) {

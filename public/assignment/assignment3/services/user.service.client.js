@@ -16,27 +16,27 @@
         return api;
 
         function deleteUser(userId) {
-            return $http.delete('/api/morning/user/'+userId);
+            return $http.delete('/api/user/'+userId);
         }
 
         function createUser(user) {
-            return $http.post("/api/morning/user", user);
+            return $http.post("/api/user", user);
         }
 
         function findUserByUsername(username) {
-            return $http.get("/api/morning/user?username="+username);
+            return $http.get("/api/user?username="+username);
         }
 
         function findUserByCredentials(username, password) {
-            return $http.get("/api/morning/user?username="+username+"&password="+password);
+            return $http.get("/api/user?username="+username+"&password="+password);
         }
 
         function updateUser(userId, newUser) {
-            return $http.put("/api/morning/user/"+userId, newUser);
+            return $http.put("/api/user/"+userId, newUser);
         }
 
         function findUserById(uid) {
-            return $http.get("/api/morning/user/"+uid);
+            return $http.get("/api/user/"+uid);
         }
     }
 })();

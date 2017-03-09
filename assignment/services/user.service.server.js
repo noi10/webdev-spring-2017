@@ -1,9 +1,9 @@
 module.exports = function (app) {
-    app.get("/api/morning/user", findUser);
-    app.get("/api/morning/user/:userId", findUserByUserId);
-    app.put("/api/morning/user/:userId", updateUser);
-    app.delete("/api/morning/user/:userId", deleteUser);
-    app.post("/api/morning/user", createUser);
+    app.get("/api/user", findUser);
+    app.get("/api/user/:userId", findUserByUserId);
+    app.put("/api/user/:userId", updateUser);
+    app.delete("/api/user/:userId", deleteUser);
+    app.post("/api/user", createUser);
 
     var users = [
         {_id: "123", username: "alice",    password: "alice",    firstName: "Alice",  lastName: "Wonder"  },
@@ -37,13 +37,10 @@ module.exports = function (app) {
         for(var u in users) {
             var user = users[u];
             if( user._id === userId ) {
-                console.log('found user');
-                console.log(user);
-                console.log('new user');
                 var newUser = req.body;
-                console.log(newUser);
                 users[u].firstName = newUser.firstName;
                 users[u].lastName = newUser.lastName;
+                users[u].password = newUser.password;
                 res.sendStatus(200);
                 return;
             }

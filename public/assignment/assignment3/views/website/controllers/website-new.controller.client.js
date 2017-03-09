@@ -9,14 +9,26 @@
         vm.createWebsite = createWebsite;
 
         function init() {
-            vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
+            WebsiteService
+                .findAllWebsitesForUser(vm.userId)
+                .success(renderWebsites);
         }
         init();
 
+        function renderWebsites(websites) {
+            vm.websites = websites;
+            //console.log(vm.userId);
+        }
+
         function createWebsite (website) {
-            WebsiteService.createWebsite(vm.userId, website);
+            console.log(website);
+            WebsiteService
+                .createWebsite(vm.userId, website)
+                .success(function(website) {
+                    $location.url("/user/"+vm.userId+"/website");
+                });
             //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website");
-        };
+
+        }
     }
 })();

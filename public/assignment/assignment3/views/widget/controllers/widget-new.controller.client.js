@@ -10,16 +10,26 @@
         vm.pageId = $routeParams.pid;
         vm.createWidget = createWidget;
 
-        function init() {
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+        function init(){
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .success(renderWidgets);
         }
         init();
 
+        function renderWidgets(widgets) {
+            vm.widgets = widgets;
+        }
+
         function createWidget (widgetType) {
-            var widgetId = new Date().getTime().toString ();
-            WidgetService.createWidget(vm.pageId, widgetId, widgetType);
-            //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);
-            $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/"+widgetId);
+            console.log(widgetType);
+            WidgetService
+                .createWidget(vm.pageId, widgetType)
+                .success(function(widget) {
+                    console.log("success");
+                    console.log(widget);
+                    $location.url("/user/"+vm.userId+"/website/"+vm.websiteId+"/page/"+vm.pageId+"/widget/" + widget._id);
+                });
         }
     }
 })();

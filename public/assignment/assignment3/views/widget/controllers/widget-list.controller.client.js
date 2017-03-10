@@ -14,10 +14,15 @@
         vm.pageId = $routeParams.pid;
 
         function init(){
-            vm.widgets = WidgetService.findWidgetsByPageId(vm.pageId);
+            WidgetService
+                .findWidgetsByPageId(vm.pageId)
+                .success(renderWidgets);
         }
         init();
 
+        function renderWidgets(widgets) {
+            vm.widgets = widgets;
+        }
         function getWidgetTemplateUrl(widgetType) {
             var url = 'views/widget/templates/widget-'+widgetType+'.view.client.html';
             return url;

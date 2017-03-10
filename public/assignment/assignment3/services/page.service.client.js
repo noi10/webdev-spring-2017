@@ -28,6 +28,7 @@
 
 
         function createPage(websiteId, page) {
+            console.log(page);
             return $http.post('/api/website/'+ websiteId +'/page', page)
         }
 

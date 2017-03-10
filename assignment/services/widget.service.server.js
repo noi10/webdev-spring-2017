@@ -1,8 +1,9 @@
 module.exports = function (app) {
-    var multer = require('multer'); // npm install multer --save
-    var upload = multer({ dest: __dirname+'/../../public/uploads' });
-
-    app.post ("/api/upload", upload.single('myFile'), uploadImage);
+    app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
+    app.get('/api/widget/:widgetId', findWidgetById);
+    app.put('/api/widget/:widgetId', updateWidget);
+    app.delete('/api/widget/:widgetId', deleteWidget);
+    app.post('/api/page/:pageId/widget', createWidget);
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": "2", "text": "GIZMODO"},
@@ -15,6 +16,11 @@ module.exports = function (app) {
             "url": "https://youtu.be/AM2Ivdi9c4E" },
         { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
     ];
+
+    var multer = require('multer'); // npm install multer --save
+    var upload = multer({ dest: __dirname+'/../../public/uploads' });
+
+    app.post ("/api/upload", upload.single('myFile'), uploadImage);
 
     function uploadImage(req, res) {
 
@@ -32,16 +38,95 @@ module.exports = function (app) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
+        //console.log(myFile);
+        widget = getWidgetById(widgetId);
+        widget.url = '/uploads/'+filename;
 
-        for(var w in widgets) {
-            if (widgets[w]._id === widgetId) {
-                widgets[w].url = '/uploads/'+filename;
-            }
-        }
-        console.log(widgets);
-        var callbackUrl   = "/assignment/assignment3/index.html#/user/"+userId+
-            "/website/"+websiteId+"/page/"+pageId+"/widget";
+        var callbackUrl   = "/assignment/assignment3/index.html#/user/"+
+            userId+"/website/"+websiteId+"/page/"+pageId+"/widget";
 
         res.redirect(callbackUrl);
     }
-}
+    function getWidgetById(widgetId) {
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if( widget._id === widgetId ) {
+                return widgets[w];
+            }
+        }
+    }
+    function findAllWidgetsForPage(req, res) {
+        var pageId = req.params.pageId;
+        var wids = [];
+        for(var w in widgets) {
+            if(pageId === widgets[w].pageId) {
+                wids.push(widgets[w]);
+            }
+        }
+        res.json(wids);
+    }
+
+    function findWidgetById(req, res) {
+        var widgetId = req.params['widgetId'];
+        //console.log(widgetId);
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if( widget._id === widgetId ) {
+                //console.log(widget);
+                res.send(widget);
+                return;
+            }
+        }
+        res.sendStatus(404).send({});
+    }
+
+    function updateWidget(req, res) {
+        var widgetId = req.params['widgetId'];
+        for(var w in widgets) {
+            var widget = widgets[w];
+            if( widget._id === widgetId ) {
+                var newWidget = req.body;
+                widgets[w] = newWidget;
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+    function createWidget(req, res) {
+        var pageId = req.params.pageId;
+        var widgetId =  (new Date()).getTime() + "";
+        var widgetType = req.body;
+        var widget;
+        switch (widgetType.type){
+            case "header":
+                widget = { "_id": widgetId, "widgetType": "HEADER", "pageId": pageId, "size": null, "text":null};
+                break;
+            case "HTML":
+                widget = { "_id": widgetId, "widgetType": "HTML", "pageId": pageId, "text":null};
+                break;
+            case "image":
+                widget = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "width": null, "url": null};
+                break;
+            case "youtube":
+                widget = { "_id": widgetId, "widgetType": "YOUTUBE", "pageId": pageId, "width": null, "url": null};
+                break;
+        }
+        widgets.push(widget);
+        res.send(widget);
+    }
+
+    function deleteWidget(req, res) {
+        var widgetId = req.params.widgetId;
+        for(var w in widgets) {
+            if(widgets[w]._id === widgetId) {
+                widgets.splice(w, 1);
+                res.sendStatus(200);
+                return;
+            }
+        }
+        res.sendStatus(404);
+    }
+
+};

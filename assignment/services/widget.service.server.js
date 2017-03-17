@@ -4,6 +4,8 @@ module.exports = function (app) {
     app.put('/api/widget/:widgetId', updateWidget);
     app.delete('/api/widget/:widgetId', deleteWidget);
     app.post('/api/page/:pageId/widget', createWidget);
+    app.put('/page/:pageId/widget', updateWidgetsOrder);
+
 
     var widgets = [
         { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": "2", "text": "GIZMODO"},
@@ -55,6 +57,29 @@ module.exports = function (app) {
             }
         }
     }
+
+    function updateWidgetsOrder(req, res){
+
+        function checkbelong(widget){
+            return widget.pageId == pageId;
+        }
+        var start = req.query.start;
+        var end = req.query.end;
+        var pageId = req.params.pageId;
+        var OrderedWidgets = widgets.filter(checkbelong);
+
+        //console.log(OrderedWidgets);
+        var widget = OrderedWidgets.splice(start, 1);
+        OrderedWidgets.splice(end, 0, widget[0]);
+        var o = 0;
+        for (var w in widgets) {
+            if (pageId == widgets[w].pageId) {
+                widgets[w] = OrderedWidgets[o];
+                o = o+1;
+            }
+        }
+    }
+
     function findAllWidgetsForPage(req, res) {
         var pageId = req.params.pageId;
         var wids = [];

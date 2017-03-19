@@ -1,5 +1,10 @@
 module.exports = function (app) {
-    require("./services/user.service.server")(app);
+
+    var model = require("./models/models.server.js")();
+
+
+
+    require("./services/user.service.server")(app, model);
     require("./services/website.service.server")(app);
     require("./services/page.service.server")(app);
     require("./services/widget.service.server")(app);

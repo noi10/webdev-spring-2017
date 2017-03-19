@@ -22,8 +22,8 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
-require ("./test/app.js")(app);
-require("./todo/app")(app);
+//require ("./test/app.js")(app);
+//require ("./todo/app")(app);
 
 var assignment = require("./assignment/app.js");
 assignment(app);

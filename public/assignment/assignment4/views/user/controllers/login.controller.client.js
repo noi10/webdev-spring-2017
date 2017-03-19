@@ -12,7 +12,7 @@
             promise
                 .success(function (user) {
                     var loginUser = user;
-                    if(loginUser != null) {
+                    if(loginUser) {
                         $location.url('/user/' + loginUser._id);
                     } else {
                         vm.error = 'user not found';

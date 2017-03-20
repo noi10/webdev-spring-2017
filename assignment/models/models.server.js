@@ -1,7 +1,11 @@
 module.exports = function () {
     var mongoose = require('mongoose');
     mongoose.Promise = require('q').Promise;
+
+    // when test locally
     //mongoose.connect('mongodb://localhost/webdev');
+
+    // when deploy to heroku
     mongoose.connect('mongodb://noi2010:qwerty1130@ds147167.mlab.com:47167/heroku_kgz7xmd8');
 
     var userModel = require("./user/user.model.server")();

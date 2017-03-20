@@ -27,7 +27,8 @@ module.exports = function () {
                     deffered.resolve(status);
                 });
         return deffered.promise;*/
-        //return model.userModel.findAllWebsitesForUser(userId);
+        return model.userModel.findAllWebsitesForUser(userId);
+/*
         var deffered = q.defer();
         model.userModel
             .findAllWebsitesForUser(userId)
@@ -41,6 +42,7 @@ module.exports = function () {
                 }
             );
         return deffered.promise;
+*/
 
     }
 

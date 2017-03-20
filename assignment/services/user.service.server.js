@@ -24,20 +24,12 @@ module.exports = function (app, model) {
                     res.sendStatus(400).send(err);
                 }
             );
-        /*        for(var u in users) {
-            if(users[u]._id === userId) {
-                users.splice(u, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);*/
     }
 
     function createUser(req, res) {
         var newUser = req.body;
-        //newUser._id = (new Date()).getTime() + "";
-        // users.push(newUser);
+        newUser.dateCreated = (new Date()).getTime();
+        newUser.websites = [];
         model.userModel
             .createUser(newUser)
             .then(
@@ -48,7 +40,6 @@ module.exports = function (app, model) {
                     res.sendStatus(500).send(err);
                 }
             );
-        //res.json(newUser);
     }
 
     function updateUser(req, res) {
@@ -64,20 +55,6 @@ module.exports = function (app, model) {
                     res.sendStatus(404).send(err);
                 }
             );
-        console.log(userId);
-/*        for(var u in users) {
-            var user = users[u];
-            if( user._id === userId ) {
-                var newUser = req.body;
-                users[u].firstName = newUser.firstName;
-                users[u].lastName = newUser.lastName;
-                users[u].password = newUser.password;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);*/
-
     }
 
     function findUserByUserId(req, res) {
@@ -86,6 +63,7 @@ module.exports = function (app, model) {
             .findUserById(userId)
             .then(
                 function(user) {
+                    //console.log(user);
                     if (user) {
                         res.json(user);
                     } else {
@@ -114,7 +92,7 @@ module.exports = function (app, model) {
             .findUserByUsername(username)
             .then(
                 function(user) {
-                    console.log(user);
+                    //console.log(user);
                     if (user != []) {
                         //console.log(user);
                         res.json(user[0]);
@@ -135,7 +113,7 @@ module.exports = function (app, model) {
                     if (user) {
                         res.json(user);
                     } else {
-                        console.log('Hi');
+                        //console.log('Hi');
                         res.send(null);
                     }
 
@@ -143,15 +121,6 @@ module.exports = function (app, model) {
                 function(err){
                     res.sendStatus(400).send(err);
                 }
-            )
-
-        /*       var user = users.find(function(u){
-            return u.username == username && u.password == password;
-        });
-        if(user) {
-            res.send(user);
-        } else {
-            res.sendStatus(404).send('User not found for username: ' + username + ' and password: ' + password);
-        }*/
+            );
     }
 };

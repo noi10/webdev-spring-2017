@@ -16,8 +16,9 @@
         init();
 
         function renderWebsites(websites) {
+            console.log(vm.websites);
             vm.websites = websites;
-            //console.log(vm.userId);
+
         }
     }
 })();

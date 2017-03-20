@@ -25,6 +25,7 @@
             WebsiteService
                 .createWebsite(vm.userId, website)
                 .success(function(website) {
+                    console.log("success created");
                     $location.url("/user/"+vm.userId+"/website");
                 });
             //vm.websites = WebsiteService.findAllWebsitesForUser(vm.userId);

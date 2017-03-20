@@ -24,14 +24,22 @@
     function findAllWebsitesForUser(userId){
         //console.log(userId);
         var deffered = q.defer();
+/*        UserModel
+         .findById(userId)
+         .populate("websites")
+         .exec(function (err, Obj) {
+         console.log("Hello from usermodel");
+         deffered.resolve(Obj.websites);
+         });
+         console.log("Hello");*/
         UserModel
-            .findById(userId)
-            .populate("websites")
-            .exec(function (err, Obj) {
-                console.log("Hello from usermodel");
-                deffered.resolve(Obj.websites);
-            });
-        console.log("Hello");
+         .findById(userId)
+         .populate("websites")
+         .exec(function (err, Obj) {
+            //console.log("Hello from usermodel");
+            deffered.resolve(Obj.websites);
+         });
+         //console.log("Hello");
         return deffered.promise;
     }
     function setModel(_model) {

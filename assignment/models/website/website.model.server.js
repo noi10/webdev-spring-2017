@@ -33,14 +33,13 @@ module.exports = function () {
             .findAllWebsitesForUser(userId)
             .then(
                 function(websites) {
-                    console.log(websites);
+                    //console.log(websites);
                     deffered.resolve(websites);
                 },
                 function(err){
                     console.log(err);
                 }
             );
-
         return deffered.promise;
 
     }

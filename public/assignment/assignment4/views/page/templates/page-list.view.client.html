@@ -15,17 +15,29 @@
 <div class="container-fluid">
     <!--{{model.pages}}-->
     <ul class="list-group">
+        <li class="list-group-item">
+            <div class="row">
+                <div class="col-xs-11 col-sm-9">
+                    Name
+                </div>
+                <div class="col-sm-2 hidden-xs">
+                    Last Modified
+                </div>
+                <div class="col-xs-1">
+                    <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/new" class="pull-right">
+                        <span class="glyphicon glyphicon-plus"></span>
+                    </a>
+                </div>
+            </div>
+        </li>
         <li ng-repeat="page in model.pages" class="list-group-item">
             <div class="row">
                 <a href = "#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}/widget"
-                   class="col-xs-11 col-sm-6">
+                   class="col-xs-11 col-sm-9">
                     {{page.name}}
                 </a>
-                <div class="col-sm-3 hidden-xs">
-                    {{page._id}}
-                </div>
                 <div class="col-sm-2 hidden-xs">
-                    {{page.websiteId}}
+                    {{page.dateCreated | date}}
                 </div>
                 <div class="col-xs-1">
                     <a href="#/user/{{model.userId}}/website/{{model.websiteId}}/page/{{page._id}}">

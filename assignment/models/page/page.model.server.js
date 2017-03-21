@@ -5,33 +5,22 @@ module.exports = function () {
     var mongoose = require("mongoose");
 
 
-    var WebsiteSchema = require("./website.schema.server")();
+    var PageSchema = require("./page.schema.server")();
 
-    var WebsiteModel = mongoose.model("WebsiteModel", WebsiteSchema);
+    var PageModel = mongoose.model("PageModel", PageSchema);
     var api = {
-        createWebsite: createWebsite,
-        findAllWebsitesForUser: findAllWebsitesForUser,
-        updateWebsite: updateWebsite,
-        findWebsiteById: findWebsiteById,
-        deleteWebsite: deleteWebsite,
+        createPage: createPage,
         findAllPagesForWebsite: findAllPagesForWebsite,
+        //updatePage: updatePage,
+        //findPageById: findPageById,
+        //deletePage: deletePage,
         setModel: setModel
     };
     return api;
 
-    function findAllPagesForWebsite(websiteId) {
-        var deffered = q.defer();
-        WebsiteModel
-            .findById(websiteId)
-            .populate("pages")
-            .exec(function (err, Obj) {
-                deffered.resolve(Obj.pages);
-            });
-        return deffered.promise;
-    }
 
-    function findAllWebsitesForUser(userId) {
-        return model.userModel.findAllWebsitesForUser(userId);
+    function findAllPagesForWebsite(websiteId) {
+        return model.websiteModel.findAllPagesForWebsite(websiteId);
     }
 
     function setModel(_model) {
@@ -76,21 +65,20 @@ module.exports = function () {
         return deffered.promise;
     }
 
-    function createWebsite(userId, website){
+    function createPage(websiteId, page){
         var deffered = q.defer();
-        WebsiteModel
-            .create(
-                website
-                , function(err, website) {
-                    model.userModel.findUserById(userId)
-                        .then( function (userObj) {
-                            userObj.websites.push(website);
-                            website._user = userObj._id;
-                            userObj.save();
-                            website.save();
-
+        PageModel
+            .create(page
+                , function(err, page) {
+                    model.websiteModel.findWebsiteById(websiteId)
+                        .then( function (websiteObj) {
+                            websiteObj.pages.push(page);
+                            page._website = websiteObj._id;
+                            //console.log(page);
+                            websiteObj.save();
+                            page.save();
                         });
-                    deffered.resolve(website);
+                    deffered.resolve(page);
                 });
         return deffered.promise;
     }

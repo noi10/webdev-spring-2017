@@ -46,7 +46,7 @@ module.exports = function (app, model) {
             .createWebsite(req.params.userId, newWebsite)
             .then(
                 function(website) {
-                    console.log(website);
+                    //console.log(website);
                     res.json(website);
                 },
                 function (err) {

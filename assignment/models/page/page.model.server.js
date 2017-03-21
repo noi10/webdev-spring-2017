@@ -11,9 +11,9 @@ module.exports = function () {
     var api = {
         createPage: createPage,
         findAllPagesForWebsite: findAllPagesForWebsite,
-        //updatePage: updatePage,
-        //findPageById: findPageById,
-        //deletePage: deletePage,
+        updatePage: updatePage,
+        findPageById: findPageById,
+        deletePage: deletePage,
         setModel: setModel
     };
     return api;
@@ -27,39 +27,40 @@ module.exports = function () {
         model = _model;
     }
 
-    function deleteWebsite(websiteId) {
+    function deletePage(pageId) {
         var deffered = q.defer();
-        WebsiteModel
-            .remove({_id: websiteId},
+        PageModel
+            .remove({_id: pageId},
                 function(err, status) {
                     deffered.resolve(status);
                 });
         return deffered.promise;
     }
 
-    function findWebsiteById(websiteId) {
+    function findPageById(pageId) {
         var deffered = q.defer();
-        WebsiteModel
-            .findById(websiteId
-                , function(err, website) {
-                    deffered.resolve(website);
+        PageModel
+            .findById(pageId
+                , function(err, page) {
+                    deffered.resolve(page);
                 });
         return deffered.promise;
     }
 
-    function updateWebsite(websiteId, newWebsite){
+    function updatePage(pageId, newPage){
         var deffered = q.defer();
-        WebsiteModel
+        PageModel
             .update(
                 {
-                    _id: websiteId
+                    _id: pageId
                 },
                 {
-                    name: newWebsite.name,
-                    description: newWebsite.description
+                    name: newPage.name,
+                    description: newPage.description,
+                    title: newPage.title
                 },
-                function (err, website){
-                    deffered.resolve(website);
+                function (err, page){
+                    deffered.resolve(page);
                 }
             );
         return deffered.promise;

@@ -104,6 +104,7 @@ module.exports = function (app, model) {
     function updateWidget(req, res) {
         var widgetId = req.params['widgetId'];
         var newWidget = req.body;
+        console.log(newWidget);
         model.widgetModel
             .updateWidget(widgetId, newWidget)
             .then(
@@ -123,7 +124,7 @@ module.exports = function (app, model) {
             .createWidget(req.params.pageId, newWidget)
             .then(
                 function(widget) {
-                    //console.log(widget);
+                    console.log(widget);
                     res.json(widget);
                 },
                 function (err) {

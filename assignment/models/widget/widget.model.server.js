@@ -44,7 +44,7 @@ module.exports = function () {
     }
 
     function updateWidget(widgetId, newWidget){
-        //console.log(widgetId, newWidget);
+        console.log(widgetId, newWidget);
         var deffered = q.defer();
         switch(newWidget.type) {
             case "HEADING":
@@ -55,8 +55,8 @@ module.exports = function () {
                             text: newWidget.text,
                             size: newWidget.size
                         },
-                        function (err, widget){
-                            deffered.resolve(widget);
+                        function (err, status){
+                            deffered.resolve(status);
                         }
                     );
                 break;
@@ -67,8 +67,8 @@ module.exports = function () {
                         {
                             text: newWidget.text
                         },
-                        function (err, widget){
-                            deffered.resolve(widget);
+                        function (err, status){
+                            deffered.resolve(status);
                         }
                     );
                 break;
@@ -80,8 +80,8 @@ module.exports = function () {
                             url: newWidget.url,
                             width: newWidget.width
                         },
-                        function (err, widget){
-                            deffered.resolve(widget);
+                        function (err, status){
+                            deffered.resolve(status);
                         }
                     );
                 break;
@@ -93,33 +93,29 @@ module.exports = function () {
                             url: newWidget.url,
                             width: newWidget.width
                         },
-                        function (err, widget){
-                            deffered.resolve(widget);
+                        function (err, status){
+                            deffered.resolve(status);
+                        }
+                    );
+                break;
+            case "TEXT":
+                WidgetModel
+                    .update(
+                        {_id: widgetId},
+                        {
+                            text: newWidget.text,
+                            rows: newWidget.rows,
+                            placeholder: newWidget.placeholder,
+                            formatted: newWidget.formatted
+                        },
+                        function (err, status){
+                            console.log("TEXT");
+                            console.log(widget);
+                            deffered.resolve(status);
                         }
                     );
                 break;
         }
-/*        WidgetModel
-            .update(
-                {
-                    _id: widgetId
-                },
-                {
-                    //name: newWidget.name,
-                    text: newWidget.text,
-                    //description: newWidget.description,
-                    //url: newWidget.url,
-                    //width: newWidget.width,
-                    //height: newWidget.height,
-                    //rows: newWidget.rows,
-                    size: newWidget.size,
-                    //class: newWidget.class,
-                    //icon: newWidget.icon
-                },
-                function (err, widget){
-                    deffered.resolve(widget);
-                }
-            );*/
         return deffered.promise;
     }
     function deleteWidget(widgetId) {

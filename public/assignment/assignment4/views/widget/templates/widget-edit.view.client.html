@@ -16,12 +16,15 @@
     </div>
 </nav>
 
-<div ng-model="model.widget.text"
+<!--<div ng-model="model.widget.text"
      text-angular
-     ta-toolbar="[['h1','h2','h3'],['bold','italics','underline','strikeThrough'],
-        ['ul','ol'],['justifyLeft','justifyCenter','justifyRight','justifyFull'],
-        ['indent','outdent'],['html']]">
-</div>
+     ta-toolbar="[['h1','h2','h3'],
+                ['bold','italics','underline','strikeThrough'],
+                ['ul','ol'],
+                ['justifyLeft','justifyCenter','justifyRight','justifyFull'],
+                ['indent','outdent'],
+                ['html']]">
+</div>-->
 
 <div class="container-fluid">
     <ng-include src="model.getEditorTemplateUrl(model.widget.type)"></ng-include>

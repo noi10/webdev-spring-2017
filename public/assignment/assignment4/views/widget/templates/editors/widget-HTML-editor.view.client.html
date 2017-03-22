@@ -1,6 +1,10 @@
 <h1>HTML Editor</h1>
 
-<textarea ng-model="model.widget.text" class="form-control" rows = "10"></textarea>
+<div text-angular ng-model="model.widget.text"
+     ta-toolbar-class="btn-toolbar"
+     ta-toolbar-group-class="btn-group"
+     ta-toolbar-button-class="btn btn-default"
+     ta-toolbar-active-button-class="active"></div>
 
 <a ng-click = "model.updateWidget(model.widget)" class="btn btn-primary btn-block btn-space">
     Update

@@ -109,8 +109,8 @@ module.exports = function () {
                             formatted: newWidget.formatted
                         },
                         function (err, status){
-                            console.log("TEXT");
-                            console.log(widget);
+                            //console.log("TEXT");
+                            //console.log(widget);
                             deffered.resolve(status);
                         }
                     );

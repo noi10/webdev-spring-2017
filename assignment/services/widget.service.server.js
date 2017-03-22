@@ -17,38 +17,39 @@ module.exports = function (app, model) {
         var width         = req.body.width;
         var myFile        = req.file;
 
-        var userId = req.body.userId;
-        var websiteId = req.body.websiteId;
-        var pageId = req.body.pageId;
+        if (myFile) {
+            var userId = req.body.userId;
+            var websiteId = req.body.websiteId;
+            var pageId = req.body.pageId;
 
-        var originalname  = myFile.originalname; // file name on user's computer
-        var filename      = myFile.filename;     // new file name in upload folder
-        var path          = myFile.path;         // full path of uploaded file
-        var destination   = myFile.destination;  // folder where file is saved to
-        var size          = myFile.size;
-        var mimetype      = myFile.mimetype;
+            var originalname  = myFile.originalname; // file name on user's computer
+            var filename      = myFile.filename;     // new file name in upload folder
+            var path          = myFile.path;         // full path of uploaded file
+            var destination   = myFile.destination;  // folder where file is saved to
+            var size          = myFile.size;
+            var mimetype      = myFile.mimetype;
 
-        //console.log(myFile);
+            //console.log(myFile);
 
-        model.widgetModel
-            .findWidgetById(widgetId)
-            .then(
-                function(widget) {
-                    if (widget) {
-                        widget.url = '/uploads/'+filename;
-                        var callbackUrl   = "/assignment/assignment4/#/user/"+
-                            userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
-                        widget.save();
-                        res.redirect(callbackUrl);
-                    } else {
-                        res.send('0');
+            model.widgetModel
+                .findWidgetById(widgetId)
+                .then(
+                    function(widget) {
+                        if (widget) {
+                            widget.url = '/uploads/'+filename;
+                            var callbackUrl   = "/assignment/assignment4/#/user/"+
+                                userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+                            widget.save();
+                            res.redirect(callbackUrl);
+                        } else {
+                            res.send('0');
+                        }
+                    },
+                    function (err) {
+                        res.sendStatus(500).send(err);
                     }
-                },
-                function (err) {
-                    res.sendStatus(500).send(err);
-                }
-            );
-
+                );
+        }
     }
 
     function reorderWidget(req, res){
@@ -131,26 +132,6 @@ module.exports = function (app, model) {
                     res.sendStatus(500).send(err);
                 }
             );
-/*        var pageId = req.params.pageId;
-        var widgetId =  (new Date()).getTime() + "";
-        var widgetType = req.body;
-        var widget;
-        switch (widgetType.type){
-            case "header":
-                widget = { "_id": widgetId, "widgetType": "HEADER", "pageId": pageId, "size": null, "text":null};
-                break;
-            case "HTML":
-                widget = { "_id": widgetId, "widgetType": "HTML", "pageId": pageId, "text":null};
-                break;
-            case "image":
-                widget = { "_id": widgetId, "widgetType": "IMAGE", "pageId": pageId, "width": null, "url": null};
-                break;
-            case "youtube":
-                widget = { "_id": widgetId, "widgetType": "YOUTUBE", "pageId": pageId, "width": null, "url": null};
-                break;
-        }
-        widgets.push(widget);
-        res.send(widget);*/
     }
 
     function deleteWidget(req, res) {

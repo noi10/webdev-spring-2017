@@ -14,11 +14,23 @@ module.exports = function () {
         updateWebsite: updateWebsite,
         findWebsiteById: findWebsiteById,
         deleteWebsite: deleteWebsite,
+        removeFromWebsite: removeFromWebsite,
         findAllPagesForWebsite: findAllPagesForWebsite,
         setModel: setModel
     };
     return api;
-
+    function removeFromWebsite(websiteId, pageId) {
+        var deffered = q.defer();
+        WebsiteModel.update (
+            {_id: websiteId},
+            { $pull: {'pages' :pageId}}
+            ,function (err, status){
+                //console.log("Hello");
+                deffered.resolve(status);
+            }
+        );
+        return deffered.promise;
+    }
     function findAllPagesForWebsite(websiteId) {
         var deffered = q.defer();
         WebsiteModel
@@ -41,10 +53,19 @@ module.exports = function () {
     function deleteWebsite(websiteId) {
         var deffered = q.defer();
         WebsiteModel
-            .remove({_id: websiteId},
-                function(err, status) {
-                    deffered.resolve(status);
-                });
+            .findById(websiteId)
+            .then(function( websiteObj) {
+                var userId = websiteObj._user;
+                model.userModel
+                    .removeFromUser(userId, websiteId)
+                    .then(function(status) {
+                        WebsiteModel
+                            .remove({_id: websiteId},
+                                function(err, status) {
+                                    deffered.resolve(status);
+                                });
+                    })
+            });
         return deffered.promise;
     }
 

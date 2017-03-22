@@ -10,7 +10,7 @@ module.exports = function () {
         phone: String,
         //websites: [WebsiteSchema],
         websites: [{type: mongoose.Schema.Types.ObjectId, ref:'WebsiteModel'}],
-        dateCreated: Date
+        dateCreated: {type: Date, default: Date.now}
 
     }, {collection: 'webdev.user'});
 

@@ -56,7 +56,8 @@ module.exports = function (app, model) {
 
     function createPage(req, res) {
         var newPage = req.body;
-        newPage.dateCreated = (new Date()).getTime();
+        //newPage.dateCreated = (new Date()).getTime();
+        newPage.widgets = [];
         model.pageModel
             .createPage(req.params.websiteId, newPage)
             .then(

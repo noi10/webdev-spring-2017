@@ -36,6 +36,8 @@
         }
 
         function updateWidget(newWidget) {
+            console.log(newWidget);
+            console.log(vm.widgetId);
             WidgetService
                 .updateWidget(vm.widgetId, newWidget)
                 .success( function(response){

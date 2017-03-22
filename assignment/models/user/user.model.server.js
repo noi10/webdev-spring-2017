@@ -7,6 +7,7 @@
         updateUser : updateUser,
         findUserByCredentials : findUserByCredentials,
         removeUser : removeUser,
+        removeFromUser : removeFromUser,
         findAllWebsitesForUser : findAllWebsitesForUser,
         setModel : setModel
     };
@@ -21,6 +22,18 @@
 
     return api;
 
+    function removeFromUser(userId, websiteId) {
+        var deffered = q.defer();
+        UserModel.update (
+            {_id: userId},
+            { $pull: {'websites' :websiteId}}
+            ,function (err, status){
+                //console.log("Hello");
+                deffered.resolve(status);
+            }
+        );
+        return deffered.promise;
+    }
 
     function findAllWebsitesForUser(userId){
         var deffered = q.defer();
@@ -28,10 +41,12 @@
          .findById(userId)
          .populate("websites")
          .exec(function (err, Obj) {
-            deffered.resolve(Obj.websites);
+             //console.log(Obj.websites);
+             deffered.resolve(Obj.websites);
          });
         return deffered.promise;
     }
+
     function setModel(_model) {
          model = _model;
     }

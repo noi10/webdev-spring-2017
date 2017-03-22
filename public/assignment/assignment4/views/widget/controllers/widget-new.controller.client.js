@@ -21,10 +21,10 @@
             vm.widgets = widgets;
         }
 
-        function createWidget (widgetType) {
-            console.log(widgetType);
+        function createWidget (widget) {
+            console.log(widget);
             WidgetService
-                .createWidget(vm.pageId, widgetType)
+                .createWidget(vm.pageId, widget)
                 .success(function(widget) {
                     console.log("success");
                     console.log(widget);

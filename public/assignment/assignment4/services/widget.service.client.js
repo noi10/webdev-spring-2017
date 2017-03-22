@@ -13,8 +13,8 @@
         };
         return api;
 
-        function createWidget(pageId, widgetType) {
-            return $http.post('/api/page/'+ pageId+ '/widget', widgetType);
+        function createWidget(pageId, widget) {
+            return $http.post('/api/page/'+ pageId+ '/widget', widget);
         }
 
         function updateWidget(widgetId, newWidget) {

@@ -41,7 +41,8 @@ module.exports = function (app, model) {
 
     function createWebsite(req, res) {
         var newWebsite = req.body;
-        newWebsite.dateCreated = (new Date()).getTime();
+        //newWebsite.dateCreated = (new Date()).getTime();
+        newWebsite.pages = [];
         model.websiteModel
             .createWebsite(req.params.userId, newWebsite)
             .then(

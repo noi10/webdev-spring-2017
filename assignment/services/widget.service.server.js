@@ -1,23 +1,10 @@
-module.exports = function (app) {
+module.exports = function (app, model) {
     app.get('/api/page/:pageId/widget', findAllWidgetsForPage);
     app.get('/api/widget/:widgetId', findWidgetById);
     app.put('/api/widget/:widgetId', updateWidget);
     app.delete('/api/widget/:widgetId', deleteWidget);
     app.post('/api/page/:pageId/widget', createWidget);
-    app.put('/page/:pageId/widget', updateWidgetsOrder);
-
-
-    var widgets = [
-        { "_id": "123", "widgetType": "HEADER", "pageId": "321", "size": "2", "text": "GIZMODO"},
-        { "_id": "234", "widgetType": "HEADER", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
-        { "_id": "345", "widgetType": "IMAGE", "pageId": "321", "width": "100%",
-            "url": "https://i.kinja-img.com/gawker-media/image/upload/s--UE7cu6DV--/c_scale,fl_progressive,q_80,w_800/xoo0evqxzxrrmrn4ayoq.jpg"},
-        { "_id": "456", "widgetType": "HTML", "pageId": "321", "text": '<p>Anker’s kevlar-reinforced PowerLine cables are <a href="http://gear.lifehacker.com/your-favorite-lightning-cables-anker-powerline-and-pow-1782036601" target="_blank" rel="noopener">far and away our readers’ top choice for charging their gadgets</a>, and you can save on several models today, including some from the nylon-wrapped PowerLine+ collection. I use these cables every single day, and I’ve never had one fray or stop working. Just be sure to note the promo codes below.<br></p>'},
-        { "_id": "567", "widgetType": "HEADER", "pageId": "321", "size": "4", "text": "Lorem ipsum"},
-        { "_id": "678", "widgetType": "YOUTUBE", "pageId": "321", "width": "100%",
-            "url": "https://youtu.be/AM2Ivdi9c4E" },
-        { "_id": "789", "widgetType": "HTML", "pageId": "321", "text": "<p>Lorem ipsum</p>"}
-    ];
+    app.put('/page/:pageId/widget', reorderWidget);
 
     var multer = require('multer'); // npm install multer --save
     var upload = multer({ dest: __dirname+'/../../public/uploads' });
@@ -40,87 +27,110 @@ module.exports = function (app) {
         var destination   = myFile.destination;  // folder where file is saved to
         var size          = myFile.size;
         var mimetype      = myFile.mimetype;
+
         //console.log(myFile);
-        widget = getWidgetById(widgetId);
-        widget.url = '/uploads/'+filename;
 
-        var callbackUrl   = "/assignment/assignment3/index.html#/user/"+
-            userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+        model.widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    if (widget) {
+                        widget.url = '/uploads/'+filename;
+                        var callbackUrl   = "/assignment/assignment4/#/user/"+
+                            userId+"/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId;
+                        widget.save();
+                        res.redirect(callbackUrl);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
 
-        res.redirect(callbackUrl);
     }
-    function getWidgetById(widgetId) {
-        for(var w in widgets) {
-            var widget = widgets[w];
-            if( widget._id === widgetId ) {
-                return widgets[w];
-            }
-        }
-    }
 
-    function updateWidgetsOrder(req, res){
+    function reorderWidget(req, res){
 
-        function checkbelong(widget){
-            return widget.pageId == pageId;
-        }
         var start = req.query.start;
         var end = req.query.end;
         var pageId = req.params.pageId;
-        var OrderedWidgets = widgets.filter(checkbelong);
+        model.widgetModel
+            .reorderWidget(pageId, start, end)
+            .then(
+                function(status) {
+                    res.sendStatus(status);
+                },
+                function(err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
 
-        //console.log(OrderedWidgets);
-        var widget = OrderedWidgets.splice(start, 1);
-        OrderedWidgets.splice(end, 0, widget[0]);
-        var o = 0;
-        for (var w in widgets) {
-            if (pageId == widgets[w].pageId) {
-                widgets[w] = OrderedWidgets[o];
-                o = o+1;
-            }
-        }
     }
 
     function findAllWidgetsForPage(req, res) {
-        var pageId = req.params.pageId;
-        var wids = [];
-        for(var w in widgets) {
-            if(pageId === widgets[w].pageId) {
-                wids.push(widgets[w]);
-            }
-        }
-        res.json(wids);
+        model.widgetModel
+            .findAllWidgetsForPage(req.params.pageId)
+            .then(
+                function(widgets){
+                    //console.log(widgets);
+                    res.json(widgets);
+                },
+                function (err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
     }
 
     function findWidgetById(req, res) {
         var widgetId = req.params['widgetId'];
-        //console.log(widgetId);
-        for(var w in widgets) {
-            var widget = widgets[w];
-            if( widget._id === widgetId ) {
-                //console.log(widget);
-                res.send(widget);
-                return;
-            }
-        }
-        res.sendStatus(404).send({});
+        model.widgetModel
+            .findWidgetById(widgetId)
+            .then(
+                function(widget) {
+                    if (widget) {
+                        res.json(widget);
+                    } else {
+                        res.send('0');
+                    }
+                },
+                function (err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
     }
 
     function updateWidget(req, res) {
         var widgetId = req.params['widgetId'];
-        for(var w in widgets) {
-            var widget = widgets[w];
-            if( widget._id === widgetId ) {
-                var newWidget = req.body;
-                widgets[w] = newWidget;
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
+        var newWidget = req.body;
+        model.widgetModel
+            .updateWidget(widgetId, newWidget)
+            .then(
+                function (status) {
+                    res.sendStatus(200);
+                },
+                function (err) {
+                    res.sendStatus(404).send(err);
+                }
+            );
     }
 
     function createWidget(req, res) {
-        var pageId = req.params.pageId;
+        var newWidget = req.body;
+        //newPage.dateCreated = (new Date()).getTime();
+        model.widgetModel
+            .createWidget(req.params.pageId, newWidget)
+            .then(
+                function(widget) {
+                    //console.log(widget);
+                    res.json(widget);
+                },
+                function (err) {
+                    res.sendStatus(500).send(err);
+                }
+            );
+/*        var pageId = req.params.pageId;
         var widgetId =  (new Date()).getTime() + "";
         var widgetType = req.body;
         var widget;
@@ -139,19 +149,21 @@ module.exports = function (app) {
                 break;
         }
         widgets.push(widget);
-        res.send(widget);
+        res.send(widget);*/
     }
 
     function deleteWidget(req, res) {
         var widgetId = req.params.widgetId;
-        for(var w in widgets) {
-            if(widgets[w]._id === widgetId) {
-                widgets.splice(w, 1);
-                res.sendStatus(200);
-                return;
-            }
-        }
-        res.sendStatus(404);
+        model.widgetModel
+            .deleteWidget(widgetId)
+            .then(
+                function(status){
+                    res.sendStatus(200);
+                },
+                function(err){
+                    res.sendStatus(400).send(err);
+                }
+            );
     }
 
 };

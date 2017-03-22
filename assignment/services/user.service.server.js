@@ -28,7 +28,7 @@ module.exports = function (app, model) {
 
     function createUser(req, res) {
         var newUser = req.body;
-        newUser.dateCreated = (new Date()).getTime();
+        //newUser.dateCreated = (new Date()).getTime();
         newUser.websites = [];
         model.userModel
             .createUser(newUser)
